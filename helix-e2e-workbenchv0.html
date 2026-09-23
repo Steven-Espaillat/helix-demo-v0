@@ -1,0 +1,247 @@
+
+<!-- saved from url=(0142)file:///Users/steven.espaillat/.codex/visualizations/2026/09/22/01a0c734-6f1e-7a50-9285-6802b0196bc1/helix-prototypes/helix-e2e-workbench.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>
+  #helix-e2e {
+    --hx-navy: light-dark(#17324d, #dceeff);
+    --hx-ink: light-dark(#203246, #e7eef6);
+    --hx-muted: light-dark(#61758a, #9eb0c1);
+    --hx-line: light-dark(#d8e2eb, #34485b);
+    --hx-canvas: light-dark(#f3f7fa, #0d141b);
+    --hx-paper: light-dark(#ffffff, #141e28);
+    --hx-paper-2: light-dark(#eaf1f7, #1b2936);
+    --hx-blue: light-dark(#1f67a6, #69b6f4);
+    --hx-blue-soft: light-dark(#e8f3fb, #16354c);
+    --hx-green: light-dark(#147a55, #5dd5a7);
+    --hx-green-soft: light-dark(#e8f6ef, #12382d);
+    --hx-amber: light-dark(#9a5a00, #f5bd67);
+    --hx-amber-soft: light-dark(#fff4df, #3f2c12);
+    --hx-red: light-dark(#b93a38, #ff8d89);
+    --hx-red-soft: light-dark(#fff0ef, #421e20);
+    color: var(--hx-ink);
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.42;
+  }
+  #helix-e2e * { box-sizing: border-box; }
+  #helix-e2e .hx-app { background: var(--hx-canvas); border: 1px solid var(--hx-line); min-height: 760px; }
+  #helix-e2e .hx-top { background: light-dark(#17324d, #132536); color: #fff; padding: 16px 20px; display: flex; gap: 20px; justify-content: space-between; align-items: center; }
+  #helix-e2e .hx-brand { font-weight: 700; letter-spacing: .18em; font-size: 18px; }
+  #helix-e2e .hx-study { color: #c9d9e7; font-size: 12px; margin-top: 3px; }
+  #helix-e2e .hx-top-meta { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+  #helix-e2e .hx-tag { border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 700; }
+  #helix-e2e .hx-tag.synthetic { background: #5c4515; color: #ffe09e; }
+  #helix-e2e .hx-tag.blocked { background: #642828; color: #ffd0ce; }
+  #helix-e2e .hx-tag.ready { background: #154d3a; color: #bdf3d8; }
+  #helix-e2e .hx-modebar { display: flex; gap: 7px; padding: 9px 14px; background: var(--hx-paper); border-bottom: 1px solid var(--hx-line); }
+  #helix-e2e button { font: inherit; }
+  #helix-e2e .hx-mode, #helix-e2e .hx-stage, #helix-e2e .hx-secondary, #helix-e2e .hx-primary { min-height: 38px; }
+  #helix-e2e .hx-mode { border: 1px solid transparent; background: transparent; color: var(--hx-muted); border-radius: 6px; padding: 7px 11px; }
+  #helix-e2e .hx-mode.active { background: var(--hx-blue-soft); border-color: var(--hx-line); color: var(--hx-blue); font-weight: 700; }
+  #helix-e2e .hx-main { padding: 18px; }
+  #helix-e2e .hx-panel { display: none; }
+  #helix-e2e .hx-panel.active { display: block; }
+  #helix-e2e .hx-journey { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 7px; margin-bottom: 14px; }
+  #helix-e2e .hx-stage { text-align: left; background: var(--hx-paper); color: var(--hx-muted); border: 1px solid var(--hx-line); border-radius: 8px; padding: 9px; }
+  #helix-e2e .hx-stage .hx-stage-num { display: block; font-size: 10px; font-weight: 700; letter-spacing: .08em; margin-bottom: 3px; }
+  #helix-e2e .hx-stage .hx-stage-name { display: block; font-size: 12px; }
+  #helix-e2e .hx-stage.done { color: var(--hx-green); background: var(--hx-green-soft); }
+  #helix-e2e .hx-stage.current { color: var(--hx-blue); border-color: var(--hx-blue); background: var(--hx-blue-soft); box-shadow: inset 0 0 0 1px var(--hx-blue); }
+  #helix-e2e .hx-workbench { display: grid; grid-template-columns: .85fr 1.35fr .9fr; gap: 12px; }
+  #helix-e2e .hx-card { background: var(--hx-paper); border: 1px solid var(--hx-line); border-radius: 9px; padding: 14px; }
+  #helix-e2e .hx-card h2, #helix-e2e .hx-card h3 { margin: 0 0 8px; }
+  #helix-e2e .hx-card h2 { font-size: 16px; }
+  #helix-e2e .hx-card h3 { font-size: 13px; }
+  #helix-e2e .hx-kicker { color: var(--hx-muted); text-transform: uppercase; letter-spacing: .08em; font-size: 10px; font-weight: 700; }
+  #helix-e2e .hx-muted { color: var(--hx-muted); font-size: 12px; }
+  #helix-e2e .hx-owner { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 4px 8px; margin: 2px 0 10px; font-size: 11px; font-weight: 700; }
+  #helix-e2e .hx-owner.agent { background: var(--hx-blue-soft); color: var(--hx-blue); }
+  #helix-e2e .hx-owner.human { background: var(--hx-amber-soft); color: var(--hx-amber); }
+  #helix-e2e .hx-owner.hybrid { background: var(--hx-paper-2); color: var(--hx-ink); }
+  #helix-e2e .hx-flow-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; margin: 12px 0; }
+  #helix-e2e .hx-node { background: var(--hx-paper-2); border-radius: 7px; padding: 10px; min-height: 70px; }
+  #helix-e2e .hx-node strong { display: block; font-size: 12px; margin-bottom: 5px; }
+  #helix-e2e .hx-arrow { color: var(--hx-blue); font-weight: 700; }
+  #helix-e2e .hx-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--hx-muted); overflow-wrap: anywhere; }
+  #helix-e2e .hx-actionrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  #helix-e2e .hx-primary { border: 0; border-radius: 6px; padding: 8px 12px; background: var(--hx-blue); color: light-dark(#fff,#08121b); font-weight: 700; }
+  #helix-e2e .hx-secondary { border: 1px solid var(--hx-line); border-radius: 6px; padding: 8px 12px; background: var(--hx-paper); color: var(--hx-ink); }
+  #helix-e2e button[disabled] { opacity: .48; }
+  #helix-e2e .hx-checklist { list-style: none; padding: 0; margin: 8px 0 0; }
+  #helix-e2e .hx-checklist li { display: grid; grid-template-columns: 16px 1fr; gap: 7px; padding: 6px 0; border-bottom: 1px solid var(--hx-line); font-size: 12px; }
+  #helix-e2e .hx-checklist li:last-child { border-bottom: 0; }
+  #helix-e2e .hx-mark.pass { color: var(--hx-green); }
+  #helix-e2e .hx-mark.wait { color: var(--hx-amber); }
+  #helix-e2e .hx-map { margin-top: 12px; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 6px; align-items: stretch; }
+  #helix-e2e .hx-map .hx-node { min-height: 96px; }
+  #helix-e2e .hx-map .hx-arrow { align-self: center; }
+  #helix-e2e .hx-stat { font-size: 22px; font-weight: 700; margin: 4px 0; }
+  #helix-e2e .hx-chain { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 8px; align-items: stretch; }
+  #helix-e2e .hx-chain .hx-card { position: relative; }
+  #helix-e2e .hx-chain .hx-card:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 44%; z-index: 2; color: var(--hx-blue); font-weight: 700; }
+  #helix-e2e .hx-pass { color: var(--hx-green); }
+  #helix-e2e .hx-fail { color: var(--hx-red); }
+  #helix-e2e .hx-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  #helix-e2e .hx-table th, #helix-e2e .hx-table td { padding: 9px 7px; border-bottom: 1px solid var(--hx-line); text-align: left; }
+  #helix-e2e .hx-table th { color: var(--hx-muted); font-weight: 700; }
+  #helix-e2e .hx-report-grid { display: grid; grid-template-columns: .72fr 1.25fr .85fr; gap: 12px; }
+  #helix-e2e .hx-sections { list-style: none; margin: 0; padding: 0; }
+  #helix-e2e .hx-sections li { display: flex; justify-content: space-between; gap: 8px; padding: 9px 0; border-bottom: 1px solid var(--hx-line); font-size: 12px; }
+  #helix-e2e .hx-document { font-family: Georgia, serif; }
+  #helix-e2e .hx-document h2 { font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  #helix-e2e .hx-highlight { background: var(--hx-amber-soft); color: var(--hx-ink); padding: 1px 3px; }
+  #helix-e2e .hx-alert { background: var(--hx-red-soft); color: var(--hx-red); border-radius: 7px; padding: 9px; margin-top: 10px; font-size: 12px; }
+  #helix-e2e .hx-live { margin-top: 10px; min-height: 20px; color: var(--hx-blue); font-size: 12px; font-weight: 700; }
+  @media (max-width: 820px) {
+    #helix-e2e .hx-journey { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    #helix-e2e .hx-workbench, #helix-e2e .hx-report-grid { grid-template-columns: 1fr; }
+    #helix-e2e .hx-chain { grid-template-columns: 1fr; }
+    #helix-e2e .hx-chain .hx-card:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -12px; }
+    #helix-e2e .hx-map { grid-template-columns: 1fr; }
+    #helix-e2e .hx-map .hx-arrow { text-align: center; transform: rotate(90deg); }
+  }
+</style>
+</head><body><section id="helix-e2e" aria-label="HELIX end-to-end agent-assisted reporting prototype">
+  <div class="hx-app">
+    <header class="hx-top">
+      <div><div class="hx-brand">HELIX</div><div class="hx-study">STUDY-HLX-028 · 28-day oral toxicity · Report workspace</div></div>
+      <div class="hx-top-meta"><span class="hx-tag synthetic">SYNTHETIC · NOT FOR SUBMISSION</span><span class="hx-tag ready" id="hx-release-tag">READY FOR EXPORT</span></div>
+    </header>
+    <nav class="hx-modebar" aria-label="Workspace views">
+      <button class="hx-mode cursor-interaction" data-panel="pipeline" type="button">Study journey</button>
+      <button class="hx-mode cursor-interaction" data-panel="evidence" type="button">Evidence chain</button>
+      <button class="hx-mode cursor-interaction active" data-panel="report" type="button">Report assembly</button>
+    </nav>
+    <main class="hx-main">
+      <section class="hx-panel" id="pipeline">
+        <div class="hx-journey" id="hx-journey" aria-label="Ten-stage reporting journey"><button type="button" class="hx-stage cursor-interaction done" data-stage="0"><span class="hx-stage-num">01</span><span class="hx-stage-name">Authorized upload and frozen manifest</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="1"><span class="hx-stage-num">02</span><span class="hx-stage-name">Parse protocol, template, and source data</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="2"><span class="hx-stage-num">03</span><span class="hx-stage-name">Resolve study type and pattern</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="3"><span class="hx-stage-num">04</span><span class="hx-stage-name">Deterministic extraction</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="4"><span class="hx-stage-num">05</span><span class="hx-stage-name">Deterministic validation</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="5"><span class="hx-stage-num">06</span><span class="hx-stage-name">Structured section drafting</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="6"><span class="hx-stage-num">07</span><span class="hx-stage-name">Compile provenance</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="7"><span class="hx-stage-num">08</span><span class="hx-stage-name">Section and release gates</span></button><button type="button" class="hx-stage cursor-interaction done" data-stage="8"><span class="hx-stage-num">09</span><span class="hx-stage-name">Review and approval</span></button><button type="button" class="hx-stage cursor-interaction current" data-stage="9"><span class="hx-stage-num">10</span><span class="hx-stage-name">Explicit final export</span></button></div>
+        <div class="hx-workbench">
+          <article class="hx-card">
+            <div class="hx-kicker">Current stage</div>
+            <h2 id="hx-stage-title">Explicit final export</h2>
+            <span class="hx-owner human" id="hx-owner">Human controlled</span>
+            <p class="hx-muted" id="hx-stage-summary">After release approval, a user explicitly exports the locked report and submission-support package.</p>
+            <ul class="hx-checklist" id="hx-stage-checks"><li><span class="hx-mark pass">✓</span><span>Release approval checked</span></li><li><span class="hx-mark pass">✓</span><span>Package preflight checked</span></li><li><span class="hx-mark pass">✓</span><span>Explicit export required</span></li></ul>
+          </article>
+          <article class="hx-card">
+            <div class="hx-kicker">Evidence transformation</div>
+            <div class="hx-flow-row"><div class="hx-node"><strong id="hx-input-title">Approved release package</strong><span class="hx-code" id="hx-input-detail">report · SEND · define.xml · nSDRG · metadata</span></div><span class="hx-arrow">→</span><div class="hx-node"><strong id="hx-output-title">Checksummed export</strong><span class="hx-code" id="hx-output-detail">four final artifacts + export event</span></div></div>
+            <div class="hx-alert" id="hx-boundary">Preparation never triggers export. The user must perform a separate final action.</div>
+            <div class="hx-actionrow"><button class="hx-primary cursor-interaction" id="hx-next" type="button" disabled="">Journey complete</button><button class="hx-secondary cursor-interaction" id="hx-human-action" type="button">Export demo package</button></div>
+            <div class="hx-live" id="hx-live" aria-live="polite">Opened stage 10: Explicit final export</div>
+          </article>
+          <aside class="hx-card">
+            <div class="hx-kicker">Agent activity</div>
+            <h2>Visible decisions</h2>
+            <ul class="hx-checklist" id="hx-agent-log"><li><span class="hx-mark pass">•</span><span>Export package prepared</span></li><li><span class="hx-mark pass">•</span><span>No files exported yet</span></li></ul>
+            <p class="hx-muted">The agent may locate, extract, validate, draft, and assemble. A qualified person owns interpretation, peer review, approval, and export authorization.</p>
+          </aside>
+        </div>
+        <div class="hx-map" aria-label="Input to report package map">
+          <div class="hx-node"><strong>Authorized research inputs</strong><div class="hx-stat">10</div><span class="hx-muted">Protocol, template, LIMS, pathology, formulation, statistics, approved pattern</span></div><span class="hx-arrow">→</span>
+          <div class="hx-node"><strong>Normalized evidence</strong><div class="hx-stat">1,662</div><span class="hx-muted">Records with grain, units, authority, terminology, and frozen source pointers</span></div><span class="hx-arrow">→</span>
+          <div class="hx-node"><strong>Peer-reviewed report</strong><div class="hx-stat">8 sections</div><span class="hx-muted">Validated claims, review flags, provenance, QAU statement, signatures</span></div><span class="hx-arrow">→</span>
+          <div class="hx-node"><strong>Explicit export package</strong><div class="hx-stat">4 artifacts</div><span class="hx-muted">Report PDF, SEND package, define.xml, and nSDRG with eCTD metadata</span></div>
+        </div>
+      </section>
+      <section class="hx-panel" id="evidence">
+        <div class="hx-kicker">Selected claim · terminal body weight, high-dose group</div>
+        <h2>One value, fully traceable</h2>
+        <div class="hx-chain">
+          <article class="hx-card"><div class="hx-kicker">Frozen source</div><h3>10 BW records</h3><p class="hx-code">A-BW#HXL-M401:DAY28…HXL-F405:DAY28</p></article>
+          <article class="hx-card"><div class="hx-kicker">Normalized facts</div><h3>Animal × day</h3><p class="hx-code">domain=BW · unit=g · authority=1 · manifest=MANIFEST-HLX-028</p></article>
+          <article class="hx-card"><div class="hx-kicker">Transform</div><h3>mean-v1</h3><p class="hx-code">filter group=G4, day=28 · arithmetic mean · no LLM math</p></article>
+          <article class="hx-card"><div class="hx-kicker">Validated claim</div><h3>263.8 g</h3><p class="hx-pass">Exact reconciliation passed</p></article>
+          <article class="hx-card"><div class="hx-kicker">Report field</div><h3>Section 5.2</h3><p>Terminal mean body weight in the high-dose group was 263.8 g.</p></article>
+        </div>
+        <article class="hx-card" style="margin-top:12px"><h3>Validation results</h3><table class="hx-table"><thead><tr><th>Rule</th><th>Evidence</th><th>Result</th></tr></thead><tbody><tr><td>Frozen manifest match</td><td>10/10 source pointers</td><td class="hx-pass">Pass</td></tr><tr><td>Authority threshold</td><td>Tier 1 locked study data</td><td class="hx-pass">Pass</td></tr><tr><td>Expected grain</td><td>Claim uses dose group; template expects dose group × sex</td><td class="hx-fail">Block</td></tr><tr><td>Report reconciliation</td><td>263.8 g equals derived value</td><td class="hx-pass">Pass</td></tr></tbody></table></article>
+      </section>
+      <section class="hx-panel active" id="report">
+        <div class="hx-report-grid">
+          <aside class="hx-card"><div class="hx-kicker">Sponsor template v5</div><h2>Report sections</h2><ul class="hx-sections"><li><span>1. Compliance</span><strong class="hx-pass">Ready</strong></li><li><span>2. Objectives</span><strong class="hx-pass">Ready</strong></li><li><span>3. Methods</span><strong class="hx-pass">Ready</strong></li><li><span>4. Formulation</span><strong class="hx-pass">Ready</strong></li><li><span>5. In-life</span><strong class="hx-fail">1 issue</strong></li><li><span>6. Clinical pathology</span><strong>Review</strong></li><li><span>7. Anatomic pathology</span><strong class="hx-fail">1 issue</strong></li><li><span>8. Conclusion</span><strong>Judgment</strong></li></ul></aside>
+          <article class="hx-card hx-document"><div class="hx-kicker">Draft section 7 · Anatomic pathology</div><h2>Microscopic findings</h2><p>Minimal hepatocellular hypertrophy was recorded in four high-dose animals. The incidence was derived from the locked MI dataset and mapped to the selected controlled terminology.</p><p><span class="hx-highlight">[NEEDS REVIEW: The draft pattern describes the severity as moderate. Source records state minimal.]</span></p><p>Every quantitative statement retains a source-record link and deterministic transform ID.</p><div class="hx-actionrow"><button class="hx-secondary cursor-interaction" type="button" id="hx-open-lineage">Inspect 4 provenance edges</button></div><div class="hx-live" id="hx-report-live" aria-live="polite">MI-HXL-M401-LIVER through MI-HXL-F402-LIVER · incidence-count-v1 · rule bundle 1.0</div></article>
+          <aside class="hx-card"><div class="hx-kicker">Release controls</div><h2>Human gate</h2><ul class="hx-checklist"><li><span class="hx-mark pass">✓</span><span>Required fields covered or flagged</span></li><li><span class="hx-mark pass">✓</span><span>Numeric claims have provenance</span></li><li><span class="hx-mark wait">!</span><span>Pathologist peer review pending</span></li><li><span class="hx-mark wait">!</span><span>QAU statement pending</span></li><li><span class="hx-mark wait">!</span><span>Study director approval pending</span></li></ul><button class="hx-primary cursor-interaction" id="hx-export" type="button">Export final package</button><p class="hx-muted">Export remains a separate action after approval. A prepared package is not FDA acceptance.</p></aside>
+        </div>
+      </section>
+    </main>
+  </div>
+</section>
+<script>
+(() => {
+  const root = document.getElementById('helix-e2e');
+  const stages = [
+    { name:'Authorized upload and frozen manifest', owner:'human', summary:'The study owner authorizes ten inputs. HELIX hashes and freezes the exact versions used by every later decision.', input:['Authorized files','protocol · template · LIMS · pathology · statistics'], output:['MANIFEST-HLX-028','10 checksums · authority tiers · lock status'], boundary:'Human authorization is required. The agent cannot add an unapproved source.', checks:['Authorization recorded','Checksums captured','Manifest frozen'], log:['Owner authorized 10 inputs','Agent verified lock metadata'] },
+    { name:'Parse protocol, template, and source data', owner:'agent', summary:'Format-specific parsers convert each frozen artifact into normalized facts without changing the originals.', input:['10 frozen artifacts','PDF · DOCX · CSV · XLSX'], output:['Typed source records','40 animals · 1,662 evidence records'], boundary:'Parsing may flag ambiguity. It may not repair or overwrite raw study data.', checks:['Protocol facts parsed','Template fields parsed','Source grains assigned'], log:['Parsed protocol v3','Preserved 48 report fields','Created source pointers'] },
+    { name:'Resolve study type and pattern', owner:'hybrid', summary:'HELIX resolves the study as a 28-day repeat-dose rodent study and retrieves the approved report pattern for structure only.', input:['Protocol facts','species · route · duration · endpoints'], output:['Study profile','REPEAT_DOSE_28D_RODENT · template v5'], boundary:'Prior reports may guide structure and phrasing. Their values never enter the new study.', checks:['Study type resolved','Pattern compatibility checked','Catalog context recorded'], log:['Matched repeat-dose profile','Selected pattern set P-28D-05'] },
+    { name:'Deterministic extraction', owner:'agent', summary:'Code reads the selected source rows and computes report-ready values at the required grain.', input:['Normalized study records','BW · CL · FW · OM · MI · PC'], output:['Candidate claims','values · units · grain · transform IDs'], boundary:'The model selects tools and evidence. Deterministic code reads values and performs math.', checks:['200 BW rows extracted','200 MI findings extracted','Transforms versioned'], log:['Ran mean-v1','Ran incidence-count-v1','No model-generated numbers'] },
+    { name:'Deterministic validation', owner:'agent', summary:'Rules check keys, terminology, units, grain, authority, aggregation, and source-to-report reconciliation.', input:['Candidate claims','claims + field rule registry'], output:['Validation evidence','3 pass · 3 blockers · exact evidence IDs'], boundary:'A failed rule creates a blocker. The agent cannot downgrade it to green.', checks:['Schema and key checks run','Grain mismatch found','MI severity conflict found'], log:['Blocked n=10 group summary','Blocked severity disagreement'] },
+    { name:'Structured section drafting', owner:'agent', summary:'The narrative model writes only around validated claims and inserts explicit review markers for unresolved fields.', input:['Validated claims + pattern','facts separated from style pattern'], output:['Eight structured sections','draft text · tables · [NEEDS REVIEW]'], boundary:'The model may write prose. It may not invent a value or make the final scientific judgment.', checks:['Eight sections instantiated','Validated claims inserted','Three review markers retained'], log:['Drafted methods and results','Preserved unresolved NOAEL'] },
+    { name:'Compile provenance', owner:'agent', summary:'Every report claim is linked to exact source records, the deterministic transform, validation results, and manifest version.', input:['Draft claims + evidence IDs','claim C-BW-HIGH'], output:['Provenance graph','12 edges · source → transform → claim'], boundary:'A numeric claim without a provenance edge cannot pass its section gate.', checks:['All numeric claims inspected','12 edges compiled','Authority tiers attached'], log:['Linked high-dose BW mean','Linked MI incidence count'] },
+    { name:'Section and release gates', owner:'hybrid', summary:'Section gates evaluate coverage and provenance. The release gate combines blockers, peer review, QAU, approval, and package preflight.', input:['Sections + validation + provenance','8 section states · 3 blockers'], output:['Gate decisions','S5 blocked · S7 blocked · release blocked'], boundary:'The agent computes gate state. Only recorded dispositions and approvals may change it.', checks:['Coverage gate evaluated','Release prerequisites evaluated','Export remains disabled'], log:['Blocked section 5','Blocked section 7','Blocked final release'] },
+    { name:'Review and approval', owner:'human', summary:'The pathologist resolves scientific findings, a peer reviewer checks the work, QAU provides its statement, and the study director approves.', input:['Draft + evidence drawers','review markers · source lineage · audit log'], output:['Signed dispositions','peer review · QAU · study director'], boundary:'Qualified people own scientific interpretation, signatures, and approval.', checks:['Pathologist review required','QAU statement required','Study director signature required'], log:['Review packet prepared','Awaiting human decisions'], action:'Record demo approvals' },
+    { name:'Explicit final export', owner:'human', summary:'After release approval, a user explicitly exports the locked report and submission-support package.', input:['Approved release package','report · SEND · define.xml · nSDRG · metadata'], output:['Checksummed export','four final artifacts + export event'], boundary:'Preparation never triggers export. The user must perform a separate final action.', checks:['Release approval checked','Package preflight checked','Explicit export required'], log:['Export package prepared','No files exported yet'], action:'Export demo package' }
+  ];
+  let current = 6;
+  let approved = false;
+  let exported = false;
+
+  const journey = root.querySelector('#hx-journey');
+  stages.forEach((stage, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'hx-stage cursor-interaction';
+    button.dataset.stage = String(index);
+    button.innerHTML = `<span class="hx-stage-num">${String(index + 1).padStart(2,'0')}</span><span class="hx-stage-name">${stage.name}</span>`;
+    button.addEventListener('click', () => { current = index; render(); });
+    journey.appendChild(button);
+  });
+
+  function render() {
+    const stage = stages[current];
+    root.querySelectorAll('.hx-stage').forEach((button, index) => {
+      button.classList.toggle('done', index < current || (index === 8 && approved) || (index === 9 && exported));
+      button.classList.toggle('current', index === current);
+    });
+    root.querySelector('#hx-stage-title').textContent = stage.name;
+    const owner = root.querySelector('#hx-owner');
+    owner.className = `hx-owner ${stage.owner}`;
+    owner.textContent = stage.owner === 'agent' ? 'Agent executed' : stage.owner === 'human' ? 'Human controlled' : 'Agent prepared · human governed';
+    root.querySelector('#hx-stage-summary').textContent = stage.summary;
+    root.querySelector('#hx-input-title').textContent = stage.input[0];
+    root.querySelector('#hx-input-detail').textContent = stage.input[1];
+    root.querySelector('#hx-output-title').textContent = stage.output[0];
+    root.querySelector('#hx-output-detail').textContent = stage.output[1];
+    root.querySelector('#hx-boundary').textContent = stage.boundary;
+    root.querySelector('#hx-stage-checks').innerHTML = stage.checks.map((check) => `<li><span class="hx-mark pass">✓</span><span>${check}</span></li>`).join('');
+    root.querySelector('#hx-agent-log').innerHTML = stage.log.map((entry) => `<li><span class="hx-mark pass">•</span><span>${entry}</span></li>`).join('');
+    const humanAction = root.querySelector('#hx-human-action');
+    humanAction.hidden = !stage.action;
+    humanAction.textContent = stage.action ?? '';
+    humanAction.disabled = current === 9 && !approved;
+    root.querySelector('#hx-next').disabled = current === stages.length - 1;
+    root.querySelector('#hx-next').textContent = current === stages.length - 1 ? 'Journey complete' : 'Run next stage';
+    root.querySelector('#hx-release-tag').textContent = exported ? 'PACKAGE EXPORTED' : approved ? 'READY FOR EXPORT' : 'RELEASE BLOCKED';
+    root.querySelector('#hx-release-tag').className = `hx-tag ${approved ? 'ready' : 'blocked'}`;
+    root.querySelector('#hx-export').disabled = !approved || exported;
+    root.querySelector('#hx-export').textContent = exported ? 'Package exported' : 'Export final package';
+  }
+
+  root.querySelector('#hx-next').addEventListener('click', () => { if (current < stages.length - 1) { current += 1; root.querySelector('#hx-live').textContent = `Opened stage ${current + 1}: ${stages[current].name}`; render(); } });
+  root.querySelector('#hx-human-action').addEventListener('click', () => {
+    if (current === 8) { approved = true; root.querySelector('#hx-live').textContent = 'Demo peer review, QAU statement, and study director approval recorded.'; }
+    if (current === 9 && approved) { exported = true; root.querySelector('#hx-live').textContent = 'Demo export event recorded. Four artifacts received checksums.'; }
+    render();
+  });
+  root.querySelectorAll('.hx-mode').forEach((button) => button.addEventListener('click', () => {
+    root.querySelectorAll('.hx-mode').forEach((item) => item.classList.toggle('active', item === button));
+    root.querySelectorAll('.hx-panel').forEach((panel) => panel.classList.toggle('active', panel.id === button.dataset.panel));
+  }));
+  root.querySelector('#hx-open-lineage').addEventListener('click', () => { root.querySelector('#hx-report-live').textContent = 'MI-HXL-M401-LIVER through MI-HXL-F402-LIVER · incidence-count-v1 · rule bundle 1.0'; });
+  root.querySelector('#hx-export').addEventListener('click', () => {
+    if (!approved || exported) return;
+    exported = true;
+    root.querySelector('#hx-report-live').textContent = 'Explicit demo export recorded. Report, SEND, define.xml, and nSDRG received checksums.';
+    render();
+  });
+  render();
+})();
+</script>
+</body></html>
