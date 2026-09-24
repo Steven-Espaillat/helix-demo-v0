@@ -22,4 +22,10 @@ Allowed stage IDs:
 
 Follow identifiers already present in the bundle from claims to provenance edges, validation results, review dispositions, and gate decisions. Preserve provenance order when the bundle records one. State each open blocker and the human action that remains.
 
-Start a valid result with `HELIX_SKILL_ACTIVATED compile-evidence-and-gates`. Echo the accepted `stageId` and `bundlePath` before the findings. Never mark a blocked section or release gate as ready.
+## Structured application mode
+
+Use structured application mode only when the request says `applicationMode` is `audit-selection-v1`. Apply the same input checks and read boundary. Return one JSON object that matches the supplied schema.
+
+Include only `caseId`, `transformId`, ordered `provenanceEdgeIds`, `validationResultIds`, `gateDecisionIds`, and `reviewDispositionIds`. Copy each identifier from the named bundle. Omit claim values, statuses, readiness, `uiStatus`, summaries, human-action prose, and the activation prefix.
+
+Outside structured application mode, start a valid result with `HELIX_SKILL_ACTIVATED compile-evidence-and-gates`. Echo the accepted `stageId` and `bundlePath` before the findings. Never mark a blocked section or release gate as ready.

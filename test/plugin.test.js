@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import { describe, test } from "node:test";
+import { AUDIT_SELECTION_SCHEMA } from "../src/evidence-case.js";
 import {
   HELIX_CODEX_CONFIG,
   HELIX_PLUGIN,
@@ -88,6 +89,13 @@ describe("HELIX plugin package", () => {
       for (const stage of stages) {
         assert.match(source, new RegExp(`\\b${stage}\\b`));
       }
+      if (skillName === "compile-evidence-and-gates") {
+        assert.match(source, /## Structured application mode/);
+        assert.match(source, /`applicationMode` is `audit-selection-v1`/);
+        for (const field of Object.keys(AUDIT_SELECTION_SCHEMA.properties)) {
+          assert.equal(source.includes(`\`${field}\``), true);
+        }
+      }
     }
   });
 });
@@ -109,6 +117,7 @@ describe("Codex replay boundary", () => {
     const browserFiles = [
       "src/render-workbench.js",
       "public/styles.css",
+      "public/workbench.js",
     ];
 
     for (const path of browserFiles) {

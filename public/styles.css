@@ -32,6 +32,11 @@ body { margin: 0; line-height: 1.45; }
 .pill.open { color: var(--amber); background: var(--amber-soft); }
 main { width: min(1180px, calc(100% - 32px)); margin: 22px auto 56px; }
 .notice { margin-bottom: 14px; padding: 11px 14px; border: 1px solid #e3bd68; border-radius: 8px; color: #684207; background: var(--amber-soft); }
+.run-panel { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 14px; padding: 14px 18px; border: 1px solid #a9c8e1; border-radius: 9px; background: var(--blue-soft); }
+.run-panel p { margin: 3px 0; }
+.run-panel .activity { color: var(--muted); font-size: 13px; }
+.run-button { min-width: 150px; border-color: var(--blue); color: white; background: var(--blue); cursor: pointer; }
+.run-button:disabled { cursor: progress; }
 .rail { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
 .stage { min-height: 76px; padding: 9px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); background: var(--paper); }
 .stage span { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 800; }
@@ -43,7 +48,7 @@ main { width: min(1180px, calc(100% - 32px)); margin: 22px auto 56px; }
 .eyebrow { margin: 0 0 5px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .hero .eyebrow { color: #b8cce0; }
 .claim-value { min-width: 170px; padding: 15px; border-radius: 9px; color: var(--navy); background: white; }
-.claim-value span { display: block; font-size: 30px; font-weight: 800; }
+.claim-value > span { display: block; font-size: 30px; font-weight: 800; }
 .claim-value small { color: var(--muted); }
 .status-explanation { padding-left: 18px; border-left: 1px solid #58728b; }
 .status-explanation strong, .status-explanation span { display: block; }
@@ -87,7 +92,7 @@ button:disabled { cursor: not-allowed; opacity: .72; }
 }
 
 @media (max-width: 640px) {
-  .topbar, .section-heading { align-items: start; flex-direction: column; }
+  .topbar, .section-heading, .run-panel { align-items: start; flex-direction: column; }
   .badges { justify-content: flex-start; }
   .rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero, .two-column, .validation-grid, .edge-list { grid-template-columns: 1fr; }

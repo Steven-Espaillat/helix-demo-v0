@@ -1,14 +1,14 @@
 const stages = [
-  "Authorize sources",
-  "Parse inputs",
-  "Resolve study",
-  "Extract claims",
-  "Validate evidence",
-  "Draft sections",
-  "Compile provenance",
-  "Evaluate gates",
-  "Human review",
-  "Explicit export",
+  { id: "authorize", label: "Authorize sources" },
+  { id: "parse", label: "Parse inputs" },
+  { id: "resolve", label: "Resolve study" },
+  { id: "extract", label: "Extract claims" },
+  { id: "validate", label: "Validate evidence" },
+  { id: "draft", label: "Draft sections" },
+  { id: "provenance", label: "Compile provenance" },
+  { id: "gates", label: "Evaluate gates" },
+  { id: "review", label: "Human review" },
+  { id: "export", label: "Explicit export" },
 ];
 
 function escapeHtml(value) {
@@ -32,9 +32,9 @@ export function renderWorkbench(bundle, evidenceCase) {
   const rail = stages
     .map(
       (stage, index) => `
-        <li class="stage ${index === 7 ? "selected" : ""}" data-stage="${index + 1}">
+        <li class="stage ${stage.id === "gates" ? "selected" : ""}" data-stage="${stage.id}">
           <span>${String(index + 1).padStart(2, "0")}</span>
-          <strong>${escapeHtml(stage)}</strong>
+          <strong>${escapeHtml(stage.label)}</strong>
         </li>`,
     )
     .join("");
@@ -66,6 +66,7 @@ export function renderWorkbench(bundle, evidenceCase) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HELIX blocked-gate audit</title>
   <link rel="stylesheet" href="/styles.css">
+  <script defer src="/workbench.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -75,13 +76,22 @@ export function renderWorkbench(bundle, evidenceCase) {
     </div>
     <div class="badges">
       <span class="badge synthetic">Synthetic data · not for submission</span>
-      <span class="badge blocked">Release blocked</span>
+      <span class="badge blocked" data-release-status>Release ${escapeHtml(evidenceCase.uiStatus)}</span>
     </div>
   </header>
 
   <main>
     <section class="notice" aria-label="Data status">
       <strong>Canonical synthetic bundle.</strong> Every study value on this page comes from the preflighted synthetic fixture. No CSV study data is loaded.
+    </section>
+
+    <section class="run-panel" aria-label="Gate audit run">
+      <div>
+        <p class="eyebrow">Server-validated stage run</p>
+        <strong>Compile evidence and evaluate the blocked gates</strong>
+        <p class="activity" data-stage-activity aria-live="polite">Ready to run the canonical gate audit.</p>
+      </div>
+      <button class="run-button" type="button" data-run-stage="gates">Run gate audit</button>
     </section>
 
     <nav aria-label="Ten-stage HELIX journey">
@@ -91,12 +101,12 @@ export function renderWorkbench(bundle, evidenceCase) {
     <section class="hero">
       <div>
         <p class="eyebrow">Selected evidence case</p>
-        <h1>${escapeHtml(evidenceCase.caseId)}</h1>
+        <h1 data-case-id>${escapeHtml(evidenceCase.caseId)}</h1>
         <p>Terminal body weight for the synthetic high-dose group.</p>
       </div>
       <div class="claim-value">
-        <span>${escapeHtml(evidenceCase.claim.value)} ${escapeHtml(evidenceCase.claim.unit)}</span>
-        <small>${escapeHtml(evidenceCase.transform.id)} · ${escapeHtml(evidenceCase.claim.status)}</small>
+        <span data-claim-value>${escapeHtml(evidenceCase.claim.value)} ${escapeHtml(evidenceCase.claim.unit)}</span>
+        <small><span data-transform-id>${escapeHtml(evidenceCase.transform.id)}</span> · <span data-claim-status>${escapeHtml(evidenceCase.claim.status)}</span></small>
       </div>
       <div class="status-explanation">
         <strong>Validated means source reconciliation passed.</strong>
@@ -107,21 +117,21 @@ export function renderWorkbench(bundle, evidenceCase) {
     <section class="grid two-column">
       <article class="card">
         <p class="eyebrow">Deterministic transform</p>
-        <h2>${escapeHtml(evidenceCase.transform.id)}</h2>
-        <p>${escapeHtml(evidenceCase.transform.summary)}</p>
+        <h2 data-transform-id>${escapeHtml(evidenceCase.transform.id)}</h2>
+        <p data-transform-summary>${escapeHtml(evidenceCase.transform.summary)}</p>
         <dl>
-          <div><dt>Claim grain</dt><dd>${escapeHtml(evidenceCase.claim.grain)}</dd></div>
-          <div><dt>Section</dt><dd>${escapeHtml(evidenceCase.claim.section_id)}</dd></div>
-          <div><dt>Field</dt><dd>${escapeHtml(evidenceCase.claim.field_id)}</dd></div>
+          <div><dt>Claim grain</dt><dd data-claim-grain>${escapeHtml(evidenceCase.claim.grain)}</dd></div>
+          <div><dt>Section</dt><dd data-claim-section>${escapeHtml(evidenceCase.claim.section_id)}</dd></div>
+          <div><dt>Field</dt><dd data-claim-field>${escapeHtml(evidenceCase.claim.field_id)}</dd></div>
         </dl>
       </article>
 
       <article class="card gate-card">
         <p class="eyebrow">Gate decisions</p>
-        <h2>Blocked</h2>
+        <h2 data-gate-status>${escapeHtml(evidenceCase.uiStatus === "blocked" ? "Blocked" : evidenceCase.uiStatus)}</h2>
         <dl>
-          <div><dt>Section 5 gate</dt><dd>${escapeHtml(sectionGate.status)} by ${escapeHtml(sectionGate.blocking_result_ids.join(", "))}</dd></div>
-          <div><dt>Release gate</dt><dd>${escapeHtml(releaseGate.status)} by ${escapeHtml(releaseGate.blocking_result_ids.join(", "))}</dd></div>
+          <div data-gate-id="GATE-SECTION-S5"><dt>Section 5 gate</dt><dd>${escapeHtml(sectionGate.status)} by ${escapeHtml(sectionGate.blocking_result_ids.join(", "))}</dd></div>
+          <div data-gate-id="GATE-RELEASE"><dt>Release gate</dt><dd>${escapeHtml(releaseGate.status)} by ${escapeHtml(releaseGate.blocking_result_ids.join(", "))}</dd></div>
         </dl>
       </article>
     </section>
@@ -131,7 +141,7 @@ export function renderWorkbench(bundle, evidenceCase) {
         <div><p class="eyebrow">Validation</p><h2>Traceability passes. Grain blocks.</h2></div>
         <span class="badge synthetic">Synthetic evidence</span>
       </div>
-      <div class="validation-grid">
+      <div class="validation-grid" data-validation-results>
         <article class="rule pass">
           <div><strong>${escapeHtml(vr003.result_id)}</strong><span class="pill pass">Passed</span></div>
           <p>${escapeHtml(vr003.message)}</p>
@@ -147,17 +157,17 @@ export function renderWorkbench(bundle, evidenceCase) {
 
     <section class="card provenance-card">
       <div class="section-heading">
-        <div><p class="eyebrow">Ordered provenance</p><h2>10 terminal records</h2></div>
-        <span class="counter">10 of 10</span>
+        <div><p class="eyebrow">Ordered provenance</p><h2 data-provenance-heading>${evidenceCase.provenanceEdges.length} terminal records</h2></div>
+        <span class="counter" data-provenance-count>${evidenceCase.provenanceEdges.length} of ${evidenceCase.provenanceEdges.length}</span>
       </div>
-      <ol class="edge-list">${edges}</ol>
+      <ol class="edge-list" data-provenance-list>${edges}</ol>
     </section>
 
     <section class="grid two-column">
       <article class="card">
         <p class="eyebrow">Open review dispositions</p>
         <h2>Human decisions remain</h2>
-        <ul class="dispositions">${dispositions}</ul>
+        <ul class="dispositions" data-review-dispositions>${dispositions}</ul>
       </article>
 
       <article class="card controls-card">
