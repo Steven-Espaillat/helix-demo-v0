@@ -220,9 +220,9 @@ describe("running blocked-gate audit", () => {
     const source = await response.text();
 
     assert.match(source, /JSON\.stringify\(\{ demoSessionId \}\)/);
-    assert.match(source, /helix\.demoSessionId/);
+    assert.match(source, /const storageKey = "helix\.demoSessionId"/);
     assert.match(source, /event\.type === "stage\.completed"/);
-    assert.match(source, /helix\.stage\.gates\.runSessionId/);
+    assert.match(source, /const runSessionStorageKey = "helix\.stage\.gates\.runSessionId"/);
     assert.match(source, /resumeGateAudit/);
     assert.match(source, /\.textContent =/);
     assert.match(source, /document\.createElement/);
