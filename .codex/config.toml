@@ -1,0 +1,2 @@
+[plugins."helix-reporting@helix-local"]
+enabled = true

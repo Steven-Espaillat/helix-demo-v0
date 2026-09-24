@@ -1,0 +1,20 @@
+{
+  "name": "helix-local",
+  "interface": {
+    "displayName": "HELIX Local"
+  },
+  "plugins": [
+    {
+      "name": "helix-reporting",
+      "source": {
+        "source": "local",
+        "path": "./plugins/helix-reporting"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
