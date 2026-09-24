@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "helix-reporting",
+  "version": "0.1.0",
+  "description": "Read-only HELIX workflows for inspecting synthetic nonclinical report evidence and blocked gates.",
+  "author": {
+    "name": "HELIX"
+  },
+  "keywords": [
+    "helix",
+    "nonclinical reporting",
+    "evidence",
+    "validation"
+  ]
+}
